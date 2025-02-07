@@ -3,6 +3,8 @@
 ### by Alain Assaf
 
 ## Project Purpose:
+Your company was in the process of updating its website, and they hired a design contractor to create some new icon graphics for the site. But the contractor delivered the final designs in the wrong format, rotated 90°, and too large.
+
 Use the Python Imaging Library to do the following to a batch of images:
 * Open an image
 * Rotate an image
@@ -10,21 +12,25 @@ Use the Python Imaging Library to do the following to a batch of images:
 * Save an image in a specific format in a separate directory 
 
 ## Original Data
-I'm using images downloaded from the [Pixabay](https://pixabay.com) archive which are public domain.
+Images were provided by Google for the exercise. After creating the container, I connected to it and downloaded the images.zip file from Google.  
+```bash
+curl -c ./cookie -s -L "https://drive.google.com/uc?export=download&id=$11hg55-dKdHN63yJP20dMLAgPJ5oiTOHF" > /dev/null | curl -Lb ./cookie "https://drive.google.com/uc?export=download&confirm=`awk '/download/ {print $NF}' ./cookie`&id=11hg55-dKdHN63yJP20dMLAgPJ5oiTOHF" -o images.zip && sudo rm -rf cookie
+```
+I unziped the resulting images.zip file into the images folder.
 
-![Image](data/2025-02-02-09-44-52.jpg)  
-*Attribution: [Jill Wellington](https://pixabay.com/users/JillWellington-334088)*
+### Image problems
+The images received are in the wrong format:
+* .tiff format
+* Image resolution 192x192 pixel (too large)
+* Rotated 90° anti-clockwise
 
-![Image](data/2025-02-02-09-45-08.jpg)  
-*Attribution: [Edgar Sax](https://pixabay.com/users/EdgarSax-22901283)*
-
-![Image](data/2025-02-02-09-45-16.jpg)  
-*Attribution: [Jacek Ben](https://pixabay.com/users/JacekBen-12984472)*
-
-![Image](data/2025-02-02-09-45-23.jpg)  
-*Attribution: [adege](https://pixabay.com/users/adege-4994132)*
+The images required for the launch should be in this format:
+* .jpeg format
+* Image resolution 128x128 pixels
+* Should be straight
 
 ## Manipulated Data
+Updated images were saved to \opt\icons.
 
 # Code details
 
